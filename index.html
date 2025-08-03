@@ -118,9 +118,26 @@
     <input type="file" id="photoUpload" accept="image/*" multiple />
   </div>
 
-  <audio id="song" autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="song" autoplay loop muted>
+  <source src="song.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  window.addEventListener('load', () => {
+    const audio = document.getElementById('song');
+    audio.muted = false;
+    audio.play().catch(() => {
+      const btn = document.createElement('button');
+      btn.textContent = "▶ Play Birthday Song";
+      btn.style.fontSize = "20px";
+      btn.style.margin = "20px";
+      btn.onclick = () => audio.play();
+      document.body.appendChild(btn);
+    });
+  });
+</script>
+
 
   <script>
     let slideIndex = 0;
@@ -202,3 +219,4 @@
   </script>
 </body>
 </html>
+
